@@ -28,7 +28,6 @@ class CSVAssociateForm(forms.Form):
         # this removes trailing spaces in the header rows - otherwise, things get weird.
         lines[0] = re.sub('\s+,', ',', lines[0])
         self.reader = csv.DictReader(lines)
-        self.reader.next()
         self.klass = self.instance.content_type.model_class()
         choices = [(None,'---- (None)')] + [(f.name, f.name) for f in self.klass._meta.fields]
         # self.base_fields gets copied over to create self.fields in __init__
