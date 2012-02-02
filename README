@@ -63,11 +63,11 @@ Transforming Data
 After importing CSV data(but before saving the model), CSV Importer will call functions
 inside the CSVIMPORTER_DATA_TRANSFORMS dict that are keyed to the model that is being
 imported. It will pass in the request object, and all of the data that it has gathered
-for the model.
+for the model. It will also pass the instance of the form (i.e. info about the uploaded filename).
 
 Example:
 
-def transform_contact(request, data):
+def transform_contact(request, data, instance):
 	from addressbook.models import Employer
 	# data = {'phone': '000-000-0000', 'first_name': 'foo', 'last_name': 'bar',
 	#	'employer': 'Acme Systems Inc.'}

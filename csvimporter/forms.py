@@ -46,7 +46,7 @@ class CSVAssociateForm(forms.Form):
             for field_name in self.reader.fieldnames:
                 data[self.cleaned_data[field_name]] = row[field_name]
             transform_key = '%s.%s' % (self.instance.content_type.app_label, self.instance.content_type.model)
-            data = transforms.get(transform_key, lambda r, d: d)(request, data)
+            data = transforms.get(transform_key, lambda r, d: d)(request, data, self.instance)
             new_obj = self.klass()
             for key in data.keys():
                 setattr(new_obj, key, data[key])
